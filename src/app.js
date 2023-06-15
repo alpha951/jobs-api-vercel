@@ -7,7 +7,6 @@ const app = express();
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
-
 // secirity packages
 
 const helmet = require('helmet');

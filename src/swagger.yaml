@@ -4,7 +4,7 @@ info:
   contact: {}
   version: "1.0"
 servers:
-  - url: https://jobs-api-vercel.vercel.app/api/v1
+  - url: https://jobs-api-vercel.vercel.app/
     variables: {}
 paths:
   /auth/register:
