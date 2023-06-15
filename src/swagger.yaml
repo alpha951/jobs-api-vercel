@@ -4,11 +4,11 @@ info:
   description: It's a job-api where you can perform login, register and CRUD operation.
   contact:
     name: Keshav Carpenter
-    url: http://jobs-api-vercel.vercel.app/
+    url: http://jobs-api-vercel.vercel.app
     email: 20uec068@lnmiit.ac.in
   version: '1.0'
 servers:
-- url: http://jobs-api-vercel.vercel.app/
+- url: http://jobs-api-vercel.vercel.app/api/v1
   variables: {}
 paths:
   /jobs:
