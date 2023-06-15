@@ -197,7 +197,7 @@ components:
         password: '123456'
   securitySchemes:
     bearer:
-      type: http
+      type: https
       scheme: bearer
 security: []
 tags:
