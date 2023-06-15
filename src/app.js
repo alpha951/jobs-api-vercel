@@ -27,12 +27,8 @@ const authRouter = require('./routes/auth');
 const jobsRouter = require('./routes/jobs');
 
 
-// Swagger
-const swaggerDocumentPath = path.join(__dirname, 'swagger.yaml');
 
-const swaggerUI = require('swagger-ui-express');
-const YAML = require('yamljs');
-const swaggerDocument = YAML.load(swaggerDocumentPath);
+
 
 // extra packages
 app.use(express.json());
@@ -44,7 +40,26 @@ app.get('/', (req, res) => {
 
 });
 
+// Swagger
+const swaggerDocumentPath = path.join(__dirname, 'swagger.yaml');
+
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load(swaggerDocumentPath);
+
+
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
+// Serve Swagger UI static files
+app.get('/swagger-ui/:file', (req, res) => {
+  res.sendFile(path.join(__dirname, 'node_modules', 'swagger-ui-dist', req.params.file));
+});
+
+// Serve Swagger UI index.html
+app.get('/swagger-ui', (req, res) => {
+  res.sendFile(path.join(__dirname, 'node_modules', 'swagger-ui-dist', 'index.html'));
+});
+
 
 
 // `app.set('trust proxy', 1)` is setting a trust proxy to the Express app.
