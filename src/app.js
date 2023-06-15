@@ -6,7 +6,6 @@ const path = require('path');
 
 
 app.use(express.static('./public'))
-app.use('/api-docs', express.static(path.join(__dirname, 'public')));
 
 // secirity packages
 const helmet = require('helmet');
