@@ -23,15 +23,22 @@ const authRouter = require('./routes/auth');
 // jobs
 const jobsRouter = require('./routes/jobs');
 
+// Swagger
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 // extra packages
 app.use(express.json());
 
 // routes
 app.get('/', (req, res) => {
-  // res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>');
-  res.send('jobs-api');
+  res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>');
+  // res.send('jobs-api');
 
 });
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 
 // `app.set('trust proxy', 1)` is setting a trust proxy to the Express app.
