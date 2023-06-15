@@ -1,152 +1,174 @@
 openapi: 3.0.0
 info:
-  title: Jobs API
-  contact: {}
-  version: "1.0"
+  title: Job-api
+  description: It's a job-api where you can perform login, register and CRUD operation.
+  contact:
+    name: Keshav Carpenter
+    url: http://jobs-api-vercel.vercel.app/
+    email: 20uec068@lnmiit.ac.in
+  version: '1.0'
 servers:
-  - url: https://jobs-api-vercel.vercel.app/
-    variables: {}
+- url: http://jobs-api-vercel.vercel.app/
+  variables: {}
 paths:
-  /auth/register:
-    post:
-      tags:
-        - Auth
-      summary: Register User
-      operationId: RegisterUser
-      parameters: []
-      requestBody:
-        description: ""
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/RegisterUserRequest"
-            example:
-              name: bob
-              email: bob@gmail.com
-              password: secret
-        required: true
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
-      security: []
-  /auth/login:
-    post:
-      tags:
-        - Auth
-      summary: Login User
-      operationId: LoginUser
-      parameters: []
-      requestBody:
-        description: ""
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/LoginUserRequest"
-            example:
-              email: susan@gmail.com
-              password: secret
-        required: true
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
-      security: []
   /jobs:
-    post:
-      tags:
-        - Jobs
-      summary: Create Job
-      operationId: CreateJob
-      parameters: []
-      requestBody:
-        description: ""
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateJobRequest"
-            example:
-              company: google
-              position: front-end developer
-        required: true
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
     get:
       tags:
-        - Jobs
-      summary: Get All Jobs
-      operationId: GetAllJobs
+      - Jobs
+      summary: All jobs
+      operationId: Alljobs
       parameters: []
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
+    post:
+      tags:
+      - Jobs
+      summary: create job
+      operationId: createjob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
   /jobs/{id}:
-    parameters:
+      parameters:
       - in: path
         name: id
         schema:
           type: string
         required: true
         description: The job ID
-    get:
-      tags:
+      get:
+        tags:
         - Jobs
-      summary: Get Single Job
-      operationId: GetSingleJob
-      parameters: []
-      responses:
-        "200":
-          description: ""
-          headers: {}
-      deprecated: false
-
-    patch:
-      tags:
+        summary: get single job
+        operationId: getsinglejob
+        responses:
+          '200':
+            description: ''
+            headers: {}
+        deprecated: false
+      patch:
+        tags:
         - Jobs
-      summary: Update Job
-      operationId: UpdateJob
+        summary: Update jobs
+        operationId: Updatejobs
+        parameters : []
+        requestBody:
+          description: ''
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/UpdatejobsRequest'
+                - example:
+                    company: OYO
+                    position: Full Stack Dev
+                    status: interview
+          required: true
+        responses:
+          '200':
+            description: ''
+            headers: {}
+        deprecated: false
+      delete:
+          tags:
+          - Jobs
+          summary: Delete job
+          operationId: Deletejob
+          responses:
+            '200':
+              description: ''
+              headers: {}
+          deprecated: false
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: register user
+      operationId: registeruser
       parameters: []
       requestBody:
-        description: ""
+        description: ''
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateJobRequest"
+              allOf:
+              - $ref: '#/components/schemas/registeruserrequest'
+              - example:
+                  name: opUser
+                  email: test@job.com
+                  password: '123456'
             example:
-              company: random
-              position: intern
+              name: opUser
+              email: test@job.com
+              password: '123456'
         required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
-    delete:
+      security: []
+  /auth/login:
+    post:
       tags:
-        - Jobs
-      summary: Delete Job
-      operationId: DeleteJob
+      - Auth
+      summary: login user
+      operationId: loginuser
       parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/loginuserrequest'
+              - example:
+                  email: test@job.com
+                  password: '123456'
+            example:
+              email: test@job.com
+              password: '123456'
+        required: true
       responses:
-        "200":
-          description: ""
+        '200':
+          description: ''
           headers: {}
       deprecated: false
+      security: []
 components:
   schemas:
-    RegisterUserRequest:
-      title: RegisterUserRequest
+    UpdatejobsRequest:
+      title: UpdatejobsRequest
       required:
-        - name
-        - email
-        - password
+      - company
+      - position
+      - status
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: OYO
+        position: Full Stack Dev
+        status: interview
+    registeruserrequest:
+      title: registeruserrequest
+      required:
+      - name
+      - email
+      - password
       type: object
       properties:
         name:
@@ -156,14 +178,14 @@ components:
         password:
           type: string
       example:
-        name: bob
-        email: bob@gmail.com
-        password: secret
-    LoginUserRequest:
-      title: LoginUserRequest
+        name: opUser
+        email: test@job.com
+        password: '123456'
+    loginuserrequest:
+      title: loginuserrequest
       required:
-        - email
-        - password
+      - email
+      - password
       type: object
       properties:
         email:
@@ -171,44 +193,15 @@ components:
         password:
           type: string
       example:
-        email: susan@gmail.com
-        password: secret
-    CreateJobRequest:
-      title: CreateJobRequest
-      required:
-        - company
-        - position
-      type: object
-      properties:
-        company:
-          type: string
-        position:
-          type: string
-      example:
-        company: google
-        position: front-end developer
-    UpdateJobRequest:
-      title: UpdateJobRequest
-      required:
-        - company
-        - position
-      type: object
-      properties:
-        company:
-          type: string
-        position:
-          type: string
-      example:
-        company: random
-        position: intern
+        email: test@job.com
+        password: '123456'
   securitySchemes:
-    httpBearer:
+    bearer:
       type: http
       scheme: bearer
-security:
-  - httpBearer: []
+security: []
 tags:
-  - name: Auth
-    description: ""
-  - name: Jobs
-    description: ""
+- name: Jobs
+  description: ''
+- name: Auth
+  description: ''

@@ -34,12 +34,8 @@ app.get('/', (req, res) => {
 });
 
 
-/* `app.set('trust proxy', 1)` is setting a trust proxy to the Express app. This is used when the app
-is behind a reverse proxy, such as a load balancer, and it tells Express to trust the
-X-Forwarded-For header that is set by the proxy. This header contains the IP address of the client
-that made the request, and without setting the trust proxy, Express would see the IP address of the
-proxy instead of the client. By setting the trust proxy, Express will use the IP address from the
-X-Forwarded-For header instead of the proxy's IP address. */
+// `app.set('trust proxy', 1)` is setting a trust proxy to the Express app.
+
 app.set('trust proxy', 1); // trust first proxy
 
 // security middleware
