@@ -2,6 +2,7 @@ require('dotenv').config();
 require('express-async-errors');
 const express = require('express');
 const app = express();
+const path = require('path');
 
 
 app.use(express.static('./public'))
@@ -28,7 +29,6 @@ const jobsRouter = require('./routes/jobs');
 
 
 // Swagger
-const path = require('path');
 const swaggerDocumentPath = path.join(__dirname, 'swagger.yaml');
 
 const swaggerUI = require('swagger-ui-express');
