@@ -28,7 +28,7 @@ const jobsRouter = require('./routes/jobs');
 // Swagger
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('../public/swagger.yaml');
+const swaggerDocument = YAML.load('swagger.yaml');
 
 // extra packages
 app.use(express.json());
