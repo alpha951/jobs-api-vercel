@@ -25,14 +25,11 @@ const authRouter = require('./routes/auth');
 // jobs
 const jobsRouter = require('./routes/jobs');
 
-const fs = require("fs");
-
-let yamlFile = fs.readFileSync("../public/swagger.yaml", "utf8");
 
 // Swagger
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load(yamlFile);
+const swaggerDocument = YAML.load('./swagger.yaml');
 
 // extra packages
 app.use(express.json());
