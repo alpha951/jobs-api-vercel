@@ -3,6 +3,11 @@ require('express-async-errors');
 const express = require('express');
 const app = express();
 
+// Swagger
+const swaggerUI = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 // secirity packages
 
 const helmet = require('helmet');
@@ -28,8 +33,10 @@ app.use(express.json());
 
 // routes
 app.get('/', (req, res) => {
-  res.send('jobs api');
+  res.send('<h1>Jobs API</h1><a href="/api-docs">Documentation</a>');
 });
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 /* `app.set('trust proxy', 1)` is setting a trust proxy to the Express app. This is used when the app
 is behind a reverse proxy, such as a load balancer, and it tells Express to trust the
