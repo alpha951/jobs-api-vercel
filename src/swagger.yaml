@@ -196,8 +196,8 @@ components:
         email: test@job.com
         password: '123456'
   securitySchemes:
-    bearer:
-      type: https
+    httpBearer:
+      type: http
       scheme: bearer
 security: 
   - httpBearer: []
