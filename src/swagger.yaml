@@ -1,15 +1,11 @@
 openapi: 3.0.0
 info:
-  title: Job-api
-  description: It's a job-api where you can perform login, register and CRUD operation.
-  contact:
-    name: Keshav Carpenter
-    url: https://jobs-api-v1-n0gv.onrender.com/
-    email: 20uec068@lnmiit.ac.in
+  title: Jobs API
+  contact: {}
   version: '1.0'
 servers:
-- url: https://jobs-api-v1-n0gv.onrender.com/api/v1
-  variables: {}
+  - url: https://jobs-api-v1-n0gv.onrender.com/api/v1
+    variables: {}
 paths:
   /auth/register:
     post:
@@ -209,7 +205,6 @@ components:
     httpBearer:
       type: http
       scheme: bearer
-<<<<<<< HEAD
 security:
   - httpBearer: []
 tags:
@@ -217,12 +212,3 @@ tags:
     description: ''
   - name: Jobs
     description: ''
-=======
-security: 
-  - httpBearer: []
-tags:
-- name: Jobs
-  description: ''
-- name: Auth
-  description: ''
->>>>>>> de6e643fd74dc0c7f22a01564cf1369cadc2fd27
