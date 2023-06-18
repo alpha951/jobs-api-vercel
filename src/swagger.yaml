@@ -199,7 +199,8 @@ components:
     bearer:
       type: https
       scheme: bearer
-security: []
+security: 
+  - httpBearer: []
 tags:
 - name: Jobs
   description: ''
